@@ -1,18 +1,9 @@
 ﻿using GitHubWebhook.Service.Models;
-//using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Models;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-//using fluent = Microsoft.Azure.Management.Fluent;
-//using queue = Azure.Storage.Queues;
 
 namespace WebhookReceiver.Service.Repos
 {
@@ -20,8 +11,7 @@ namespace WebhookReceiver.Service.Repos
     {
         public async Task<PullRequest> ProcessPullRequest(JObject payload,
                 string clientId, string clientSecret,
-                string tenantId, string subscriptionId, string resourceGroupName,
-                string keyVaultQueueName, string keyVaultSecretsQueueName, string storageConnectionString)
+                string tenantId, string subscriptionId, string resourceGroupName)
         {
             //Validate the payload
             if (payload["resource"] == null)
@@ -60,18 +50,6 @@ namespace WebhookReceiver.Service.Repos
             {
                 throw new Exception("Misconfiguration: resource group is null");
             }
-            else if (string.IsNullOrEmpty(keyVaultQueueName) == true)
-            {
-                throw new Exception("Misconfiguration: storage policies queue name is null");
-            }
-            else if (string.IsNullOrEmpty(keyVaultSecretsQueueName) == true)
-            {
-                throw new Exception("Misconfiguration: storage secrets queue name is null");
-            }
-            else if (string.IsNullOrEmpty(storageConnectionString) == true)
-            {
-                throw new Exception("Misconfiguration: storage connection string is null");
-            }
 
             //Get pull request details
             PullRequest pr = new PullRequest
@@ -85,16 +63,9 @@ namespace WebhookReceiver.Service.Repos
             //If the PR is completed or abandoned, clean up the secrets and permissions from key vault and then delete the resource group/resources
             if (pr != null && (pr.Action == "closed"))
             {
-                //Clean up the key vault
+                //Authenicate and connect to Azure subscription
                 AzureCredentials creds = new AzureCredentialsFactory().FromServicePrincipal(clientId, clientSecret, tenantId, AzureEnvironment.AzureGlobalCloud);
                 Microsoft.Azure.Management.Fluent.IAzure azure = Microsoft.Azure.Management.Fluent.Azure.Authenticate(creds).WithSubscription(subscriptionId);
-
-                RestClient _restClient = RestClient
-                   .Configure()
-                   .WithEnvironment(AzureEnvironment.AzureGlobalCloud)
-                   .WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
-                   .WithCredentials(creds)
-                   .Build();
 
                 //Delete the resource group
                 await azure.ResourceGroups.DeleteByNameAsync(resourceGroupName);
@@ -108,8 +79,7 @@ namespace WebhookReceiver.Service.Repos
     {
         Task<PullRequest> ProcessPullRequest(JObject payload,
                 string clientId, string clientSecret,
-                string tenantId, string subscriptionId, string resourceGroupName,
-                string keyVaultQueueName, string keyVaultSecretsQueueName, string storageConnectionString);
+                string tenantId, string subscriptionId, string resourceGroupName);
     }
 
 }
