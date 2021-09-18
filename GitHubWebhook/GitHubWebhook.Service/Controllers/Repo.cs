@@ -52,7 +52,7 @@ namespace WebhookReceiver.Service.Repos
             }
 
             //Get pull request details
-            PullRequest pr = new PullRequest
+            PullRequest pr = new()
             {
                 Number = payload["number"]?.ToString(),
                 Action = payload["action"]?.ToString()
