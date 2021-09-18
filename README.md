@@ -1,5 +1,5 @@
 # GitHubWebhook
-An ASP.NET (.NET 5) webhook to process GitHub pull request events
+An ASP.NET (.NET 5) webhook to process GitHub pull request events. The goal is to capture close events from Pull Requests, and delete corresponding resources in Azure related to the Pull Request.
 
 ## References
 
