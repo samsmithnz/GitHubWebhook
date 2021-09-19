@@ -24,8 +24,7 @@ namespace GitHubWebHook.Tests
             //Key vault access
             IConfigurationBuilder configBuilder = new ConfigurationBuilder()
                .SetBasePath(AppContext.BaseDirectory)
-               .AddJsonFile("appsettings.json")
-               .AddUserSecrets<HomeController>();
+               .AddJsonFile("appsettings.json");
             IConfigurationRoot Configuration = configBuilder.Build();
 
             //Setup the repo
@@ -40,7 +39,7 @@ namespace GitHubWebHook.Tests
         public async Task ProcessingSamplePayloadTest()
         {
             //Arrange
-            JObject payload = Common.ReadJSON(@"/Sample/sample.json");
+            JObject payload = Common.ReadJSON(@"/Samples/ClosedPR.json");
             Repo code = new();
 
             //Act
