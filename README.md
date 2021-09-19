@@ -4,3 +4,7 @@ An ASP.NET (.NET 5) webhook to process GitHub pull request events. The goal is t
 ## References
 
 - [GitHub web hook docs](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)
+
+
+## Azure DevOps Note:
+There is an [Azure DevOps version](https://github.com/samsmithnz/AzureDevOpsWebhook) too! 
