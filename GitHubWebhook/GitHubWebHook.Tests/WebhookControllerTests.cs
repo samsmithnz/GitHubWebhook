@@ -29,10 +29,10 @@ namespace GitHubWebHook.Tests
 
             //Setup the repo
             ClientId = Configuration["AppSettings:ClientId"];
-            ClientSecret = Configuration["WebhookClientSecret"];
-            TenantId = Configuration["WebhookTenantId"];
-            SubscriptionId = Configuration["WebhookSubscriptionId"];
-            ResourceGroupName = Configuration["AppSettings:WebhookResourceGroup"];
+            ClientSecret = Configuration["AppSettings:ClientSecret"];
+            TenantId = Configuration["AppSettings:TenantId"];
+            SubscriptionId = Configuration["AppSettings:SubscriptionId"];
+            ResourceGroupName = Configuration["AppSettings:ResourceGroup"];
         }
 
         [TestMethod]

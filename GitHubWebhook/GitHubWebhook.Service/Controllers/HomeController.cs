@@ -26,9 +26,9 @@ namespace GitHubWebhook.Service.Controllers
         {
             string clientId = _configuration["AppSettings:ClientId"];
             string clientSecret = _configuration["AppSettings:ClientSecret"];
-            string tenantId = _configuration["WebhookTenantId"];
-            string subscriptionId = _configuration["WebhookSubscriptionId"];
-            string resourceGroupName = _configuration["AppSettings:WebhookResourceGroup"];
+            string tenantId = _configuration["AppSettings:TenantId"];
+            string subscriptionId = _configuration["AppSettings:SubscriptionId"];
+            string resourceGroupName = _configuration["AppSettings:ResourceGroup"];
 
             //Add identities to queue, if they don't exist.
             PullRequest result = await _repo.ProcessPullRequest(payload,
