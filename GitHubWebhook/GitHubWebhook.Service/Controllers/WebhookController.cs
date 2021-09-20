@@ -22,7 +22,7 @@ namespace GitHubWebhook.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post(JObject payload)
+        public async Task<IActionResult> Post(string id, JObject payload)
         {
             string clientId = _configuration["AppSettings:ClientId"];
             string clientSecret = _configuration["AppSettings:ClientSecret"];
