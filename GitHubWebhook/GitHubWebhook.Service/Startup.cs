@@ -8,6 +8,7 @@ using WebhookReceiver.Service.Repos;
 
 namespace GitHubWebhook.Service
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)

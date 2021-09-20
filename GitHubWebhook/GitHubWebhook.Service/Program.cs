@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace GitHubWebhook.Service
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)
