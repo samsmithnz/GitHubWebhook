@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 
-namespace GitHubWebHook.Tests
+namespace GitHubWebhook.Tests
 {
     public static class Common
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31710.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubWebhook.Service", "GitHubWebhook.Service\GitHubWebhook.Service.csproj", "{3E112999-D64C-4136-9DBE-7A8793197A98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubWebHook.Tests", "GitHubWebHook.Tests\GitHubWebHook.Tests.csproj", "{E55CA326-2A46-42A1-9CA5-3B9F62358DDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubWebhook.Tests", "GitHubWebHook.Tests\GitHubWebhook.Tests.csproj", "{E55CA326-2A46-42A1-9CA5-3B9F62358DDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

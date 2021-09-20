@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>", Scope = "member", Target = "~M:GitHubWebHook.Tests.Common.ReadJSON(System.String)~Newtonsoft.Json.Linq.JObject")]
+[assembly: SuppressMessage("Style", "IDE0063:Use simple 'using' statement", Justification = "<Pending>", Scope = "member", Target = "~M:GitHubWebhook.Tests.Common.ReadJSON(System.String)~Newtonsoft.Json.Linq.JObject")]

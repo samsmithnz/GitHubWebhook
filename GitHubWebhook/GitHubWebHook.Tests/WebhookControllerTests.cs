@@ -1,4 +1,3 @@
-using GitHubWebhook.Service.Controllers;
 using GitHubWebhook.Service.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,12 +6,12 @@ using System;
 using System.Threading.Tasks;
 using WebhookReceiver.Service.Repos;
 
-namespace GitHubWebHook.Tests
+namespace GitHubWebhook.Tests
 {
     [TestClass]
     public class WebhookControllerTests
     {
-       private string ClientId;
+        private string ClientId;
         private string ClientSecret;
         private string TenantId;
         private string SubscriptionId;
@@ -24,7 +23,8 @@ namespace GitHubWebHook.Tests
             //Key vault access
             IConfigurationBuilder configBuilder = new ConfigurationBuilder()
                .SetBasePath(AppContext.BaseDirectory)
-               .AddJsonFile("appsettings.json");
+               .AddJsonFile("appsettings.json")
+               .AddUserSecrets<WebhookControllerTests>();
             IConfigurationRoot Configuration = configBuilder.Build();
 
             //Setup the repo
