@@ -54,7 +54,7 @@ namespace GitHubWebhook.Tests
         }
 
         [TestMethod]
-        public async Task ReadingSample2PayloadTest()
+        public async Task ReadingInvalidPRSamplePayloadTest()
         {
             //Arrange
             JObject payload = Common.ReadJSON(@"/Samples/RepoPushSample.json");
@@ -69,6 +69,24 @@ namespace GitHubWebhook.Tests
             Assert.IsTrue(pr != null);
             Assert.AreEqual(null, pr.Number);
             Assert.AreEqual(null, pr.Action);
+        }
+
+        [TestMethod]
+        public async Task ReadingEditingPRSamplePayloadTest()
+        {
+            //Arrange
+            JObject payload = Common.ReadJSON(@"/Samples/EditedPR.json");
+            Repo code = new();
+
+            //Act
+            PullRequest pr = await code.ProcessPullRequest(payload,
+                ClientId, ClientSecret,
+                TenantId, SubscriptionId, ResourceGroupName);
+
+            //Assert
+            Assert.IsTrue(pr != null);
+            Assert.AreEqual("4", pr.Number);
+            Assert.AreEqual("edited", pr.Action);
         }
 
         //[TestMethod]
