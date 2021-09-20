@@ -24,3 +24,28 @@ jobs:
       with:
         name: service
         path: ${{ github.workspace }}/service    
+
+  deploy:
+    runs-on: windows-latest
+    needs: [build]        
+    steps:        
+    # Login with the secret SP details
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_SP }}  
+    
+    #Download the artifacts from GitHub
+    - name: Download service artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: service
+    
+    #Deploy service and website to Azure staging slots
+    - name: Deploy web service to Azure WebApp
+      uses: Azure/webapps-deploy@v1
+      with:
+        app-name: ghwebhook-prod-eu-service
+        package: service
+    - name: Set service secrets
+      run: az webapp config appsettings set --name "ghwebhook-prod-eu-service" --resource-group "GitHubWebhook" --settings "AppSettings:ClientId=${{ secrets.SP_CLIENT_ID }}" "AppSettings:ClientSecret=${{ secrets.SP_CLIENT_SECRET }}" "AppSettings:SubscriptionId=${{ secrets.SP_SUBSCRIPTION_ID }}" "AppSettings:TenantId=${{ secrets.SP_TENANT_ID }}" 
