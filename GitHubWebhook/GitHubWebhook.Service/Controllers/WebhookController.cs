@@ -9,12 +9,12 @@ namespace GitHubWebhook.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HomeController : ControllerBase
+    public class WebhookController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly IRepo _repo;
 
-        public HomeController(IConfiguration configuration, IRepo repo)
+        public WebhookController(IConfiguration configuration, IRepo repo)
         {
             _configuration = configuration;
             _repo = repo;
@@ -35,6 +35,12 @@ namespace GitHubWebhook.Service.Controllers
                 clientId, clientSecret, tenantId, subscriptionId, resourceGroupName);
 
             return (result != null) ? new OkResult() : new StatusCodeResult(500);
+        }
+
+        [HttpGet]
+        public string Get()
+        {
+            return "Hello world";
         }
 
     }
