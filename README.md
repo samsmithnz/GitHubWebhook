@@ -9,6 +9,8 @@ az ad sp create-for-rbac --name "MyGitHubWebHookServicePrincipal" --role contrib
 ```
 2. the result should look like this. Make a note of the client id and client secret:
 ![image](https://user-images.githubusercontent.com/8389039/133949278-26c2c430-ac2e-47e1-b481-73b32011ed84.png)
+3. Add the service principal to the contributor role on the subscription:
+![image](https://user-images.githubusercontent.com/8389039/133949340-8326ddb5-c95e-4f81-b7df-28a7587fa462.png)
 
 
 ## References
