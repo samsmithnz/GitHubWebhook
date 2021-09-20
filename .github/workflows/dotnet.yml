@@ -19,4 +19,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: DotNet Publish Web Service
       run: dotnet publish GitHubWebhook/GitHubWebhook.Service/GitHubWebhook.Service.csproj --configuration Release --output ${{ github.workspace }}/service
-    
+    - name: Upload web service build artifacts back to GitHub
+      uses: actions/upload-artifact@master
+      with:
+        name: service
+        path: ${{ github.workspace }}/service    
