@@ -14,42 +14,38 @@ namespace WebhookReceiver.Service.Repos
                 string tenantId, string subscriptionId, string resourceGroupName)
         {
             //Validate the payload
-            if (payload["resource"] == null)
+            if (payload == null)
             {
-                throw new Exception("Payload resource is null");
+                throw new Exception("Payload is null");
             }
-            else if (payload["resource"]["status"] == null)
+            else if (payload["number"] == null)
             {
-                throw new Exception("Payload resource status is null");
+                throw new Exception("Payload number is null");
             }
-            else if (payload["resource"]["title"] == null)
+            else if (payload["action"] == null)
             {
-                throw new Exception("Payload title is null");
+                throw new Exception("Payload action is null");
             }
-            else if (payload["resource"]["pullRequestId"] == null)
-            {
-                throw new Exception("Payload pullRequestId is null");
-            }
-            else if (string.IsNullOrEmpty(clientId) == true)
-            {
-                throw new Exception("Misconfiguration: client id is null");
-            }
-            else if (string.IsNullOrEmpty(clientSecret) == true)
-            {
-                throw new Exception("Misconfiguration: client secret is null");
-            }
-            else if (string.IsNullOrEmpty(tenantId) == true)
-            {
-                throw new Exception("Misconfiguration: tenant id is null");
-            }
-            else if (string.IsNullOrEmpty(subscriptionId) == true)
-            {
-                throw new Exception("Misconfiguration: subscription id is null");
-            }
-            else if (string.IsNullOrEmpty(resourceGroupName) == true)
-            {
-                throw new Exception("Misconfiguration: resource group is null");
-            }
+            //else if (string.IsNullOrEmpty(clientId) == true)
+            //{
+            //    throw new Exception("Misconfiguration: client id is null");
+            //}
+            //else if (string.IsNullOrEmpty(clientSecret) == true)
+            //{
+            //    throw new Exception("Misconfiguration: client secret is null");
+            //}
+            //else if (string.IsNullOrEmpty(tenantId) == true)
+            //{
+            //    throw new Exception("Misconfiguration: tenant id is null");
+            //}
+            //else if (string.IsNullOrEmpty(subscriptionId) == true)
+            //{
+            //    throw new Exception("Misconfiguration: subscription id is null");
+            //}
+            //else if (string.IsNullOrEmpty(resourceGroupName) == true)
+            //{
+            //    throw new Exception("Misconfiguration: resource group is null");
+            //}
 
             //Get pull request details
             PullRequest pr = new()
