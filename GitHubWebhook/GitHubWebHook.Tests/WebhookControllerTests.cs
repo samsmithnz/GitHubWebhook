@@ -36,7 +36,7 @@ namespace GitHubWebhook.Tests
         }
 
         [TestMethod]
-        public async Task ProcessingSamplePayloadTest()
+        public async Task ReadingSamplePayloadTest()
         {
             //Arrange
             JObject payload = Common.ReadJSON(@"/Samples/ClosedPR.json");
@@ -52,5 +52,43 @@ namespace GitHubWebhook.Tests
             Assert.AreEqual("2", pr.Number);
             Assert.AreEqual("closed", pr.Action);
         }
+
+        [TestMethod]
+        public async Task ReadingSample2PayloadTest()
+        {
+            //Arrange
+            JObject payload = Common.ReadJSON(@"/Samples/RepoPushSample.json");
+            Repo code = new();
+
+            //Act
+            PullRequest pr = await code.ProcessPullRequest(payload,
+                ClientId, ClientSecret,
+                TenantId, SubscriptionId, ResourceGroupName);
+
+            //Assert
+            Assert.IsTrue(pr != null);
+            Assert.AreEqual(null, pr.Number);
+            Assert.AreEqual(null, pr.Action);
+        }
+
+        //[TestMethod]
+        //public async Task ProcessingSamplePayloadTest()
+        //{
+        //    //Arrange
+        //    JObject payload = Common.ReadJSON(@"/Samples/ClosedPR.json");
+        //    Repo code = new();
+
+        //    //Act
+
+
+        //    PullRequest pr = await code.ProcessPullRequest(payload,
+        //        ClientId, ClientSecret,
+        //        TenantId, SubscriptionId, ResourceGroupName);
+
+        //    //Assert
+        //    Assert.IsTrue(pr != null);
+        //    Assert.AreEqual("2", pr.Number);
+        //    Assert.AreEqual("closed", pr.Action);
+        //}
     }
 }
