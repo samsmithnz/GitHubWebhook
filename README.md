@@ -3,10 +3,13 @@ An ASP.NET (.NET 5) webhook to process GitHub pull request events. The goal is t
 
 ## Setup
 
-1. Create a service principal in Azure. Note that this should be scoped to subscription:
+1. Create a service principal in Azure, running this command (with your sub id) in the Azure Portal shell. Note that this should be scoped to subscription:
 ```
 az ad sp create-for-rbac --name "MyGitHubWebHookServicePrincipal" --role contributor --scopes /subscriptions/[your subscription id] --sdk-auth
 ```
+2. the result should look like this. Make a note of the client id and client secret:
+![image](https://user-images.githubusercontent.com/8389039/133949278-26c2c430-ac2e-47e1-b481-73b32011ed84.png)
+
 
 ## References
 
