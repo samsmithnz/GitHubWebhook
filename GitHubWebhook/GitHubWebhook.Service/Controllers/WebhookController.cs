@@ -22,7 +22,7 @@ namespace GitHubWebhook.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post(string id, JObject payload)
+        public async Task<IActionResult> Post(string id, [FromBody] JObject payload)
         {
             string clientId = _configuration["AppSettings:ClientId"];
             string clientSecret = _configuration["AppSettings:ClientSecret"];
@@ -30,7 +30,6 @@ namespace GitHubWebhook.Service.Controllers
             string subscriptionId = _configuration["AppSettings:SubscriptionId"];
             string resourceGroupName = _configuration["AppSettings:ResourceGroup"];
 
-            //Add identities to queue, if they don't exist.
             PullRequest result = await _repo.ProcessPullRequest(payload,
                 clientId, clientSecret, tenantId, subscriptionId, resourceGroupName);
 
